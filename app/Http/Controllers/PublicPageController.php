@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
+use App\Models\SliderImage;
 
 class PublicPageController extends Controller
 {
-	public function home(): View { return view('public.home'); }
+	public function home(): View {
+		$sliderImages = SliderImage::query()
+			->where('is_active', true)
+			->orderBy('sort_order')
+			->get();
+		return view('public.home', compact('sliderImages'));
+	}
 	public function about(): View { return view('public.about'); }
 	public function projects(): View { return view('public.projects'); }
 	public function contact(): View { return view('public.contact'); }
