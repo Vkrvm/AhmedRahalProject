@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicPageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SliderImageController;
 
 Route::get('/', [PublicPageController::class, 'home'])->name('home');
 
@@ -22,6 +23,13 @@ Route::get('/branches', [PublicPageController::class, 'branches'])->name('branch
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Admin - Slider Images (auth protected)
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('slider-images', SliderImageController::class)->except(['show']);
+    Route::post('slider-images/{slider_image}/toggle', [SliderImageController::class, 'toggleActive'])->name('slider-images.toggle');
+    Route::post('slider-images/reorder', [SliderImageController::class, 'reorder'])->name('slider-images.reorder');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
