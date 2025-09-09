@@ -14,7 +14,7 @@
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 p-0">
 					<a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
 						<img src="{{ asset('images/RahalDesignsLogo.png') }}" alt="Logo" width="40" class="me-1">
-						<a href="{{ route('home') }}" class="brand">{{ config('app.name', 'Rahal Designs') }}</a>
+						<span class="brand">{{ config('app.name', 'Rahal Designs') }}</span>
 					</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
