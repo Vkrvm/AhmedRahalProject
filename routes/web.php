@@ -1,11 +1,23 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicPageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PublicPageController::class, 'home'])->name('home');
+
+Route::get('/about', [PublicPageController::class, 'about'])->name('about');
+Route::get('/projects', [PublicPageController::class, 'projects'])->name('projects');
+Route::get('/contact', [PublicPageController::class, 'contact'])->name('contact');
+
+// Footer-only pages
+Route::get('/about-us', [PublicPageController::class, 'aboutUs'])->name('about.us');
+Route::get('/our-projects', [PublicPageController::class, 'ourProjects'])->name('our.projects');
+Route::get('/contact-us', [PublicPageController::class, 'contactUs'])->name('contact.us');
+Route::get('/careers', [PublicPageController::class, 'careers'])->name('careers');
+Route::get('/design-process', [PublicPageController::class, 'designProcess'])->name('design.process');
+Route::get('/client-stories', [PublicPageController::class, 'clientStories'])->name('client.stories');
+Route::get('/branches', [PublicPageController::class, 'branches'])->name('branches');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
