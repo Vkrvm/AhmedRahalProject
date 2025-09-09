@@ -1,5 +1,8 @@
+@use "bootstrap/scss/bootstrap";
 @use 'partials/variables';
 @use 'partials/mixins';
+@use 'components/navbar';
+@use 'components/footer';
 @use 'views/home';
 @use 'views/about';
 @use 'views/projects';
@@ -14,7 +17,7 @@
 
 body {
 	margin: 0;
-	font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+	font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 .site-header, .site-footer {

@@ -1,0 +1,30 @@
+.site-header .navbar-brand span {
+	font-weight: 700;
+}
+
+.site-header .nav-link {
+	font-weight: 500;
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    &:hover {
+        color: #c9a65a;
+    }
+}
+
+.site-header .navbar {
+	background-color: #111 !important;
+}
+
+.brand {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    &:hover {
+        color: #c9a65a;
+    }
+}
+
