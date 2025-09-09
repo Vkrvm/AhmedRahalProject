@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<header class="site-header">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-5">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 p-0">
 					<a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
 						<img src="{{ asset('images/RahalDesignsLogo.png') }}" alt="Logo" width="40" class="me-1">
 						<a href="{{ route('home') }}" class="brand">{{ config('app.name', 'Rahal Designs') }}</a>
