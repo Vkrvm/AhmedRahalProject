@@ -7,6 +7,11 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'jquery';
+import 'jquery-nice-select';
+import 'jquery-nice-select/js/jquery.nice-select.min.js';
+
+
 
 window.Alpine = Alpine;
 Alpine.start();

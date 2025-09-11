@@ -12,6 +12,8 @@
 @use 'views/design-process';
 @use 'views/client-stories';
 @use 'views/branches';
+@use 'jquery-nice-select/css/nice-select.css';
+
 
 body {
 	margin: 0;
