@@ -1,6 +1,55 @@
-.page-branches {
-	 h1 { margin-bottom: 8px; }
-	 p { color: #444; }
+.page-branches{
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+    h1{
+        color: #c9a65a;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    p{
+        color: #ccc;
+        margin-bottom: 20px;
+    }
+    .branches-grid{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        height: 100px;
+        margin-bottom: 50px;
+        .branch-btn{
+            a{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 200px;
+                padding: 12px 30px;
+                background-color: #c9a65a;
+                color: #121212;
+                border: none;
+                text-decoration: none;
+                font-weight: bold;
+                border-radius: 30px;
+                transition: background 0.3s ease;
+                &:hover{
+                    background-color: #b98f45;
+                }
+            }
+        }
+
+    }
+    .contact-info{
+        h5{
+            color: #f0f0f0;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        p{
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+    }
 }
-
-
