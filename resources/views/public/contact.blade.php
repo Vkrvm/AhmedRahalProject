@@ -2,7 +2,27 @@
 
 @section('content')
 	<section class="page page-contact">
-		<h1>Contact</h1>
-		<p>Contact page content.</p>
+		<h1>Contact Us</h1>
+		<p>We’d love to hear about your next project!</p>
+		<form>
+			<input type="text" placeholder="Name">
+			<input type="email" placeholder="Email">
+			<input type="text" placeholder="Phone">
+            <select class="my-select" name="branch" id="branch">
+                <option data-display="Select Branch"></option>
+                <option value="Cairo">Cairo</option>
+                <option value="Dubai">Dubai</option>
+            </select>
+			<textarea placeholder="Message"></textarea>
+			<button type="submit">Send</button>
+		</form>
 	</section>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('select.my-select').niceSelect();
+        $('.my-select.nice-select .list').css('width', '300px');
+    });
+</script>
+    
