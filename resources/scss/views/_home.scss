@@ -61,10 +61,12 @@
 
     // Swiper section
     .imgs-slider {
-        background: #171717;
+        background: #121212;
         padding: 60px 30px;
+        margin-top: 50px;
         .mySwiper {
             background: #171717;
+            padding: 10px;
             .swiper-slide {
                 transition: transform .3s ease;
 
