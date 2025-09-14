@@ -8,10 +8,14 @@
 }
 
 body.admin {
-    background: #0b0b0c;
+    background: #111827;
     color: #e9eaee;
 }
-
+.admin {
+    main{
+        background-color: #111827;
+    }
+}
 .admin nav,
 body.admin nav {
     background: #0f0f10 !important;
