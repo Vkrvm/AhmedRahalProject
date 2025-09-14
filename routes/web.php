@@ -39,6 +39,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Admin - Projects (auth protected)
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
+    Route::delete('projects/image/{image}', [\App\Http\Controllers\Admin\ProjectController::class, 'deleteImage'])->name('projects.image.delete');
 });
 
 Route::middleware('auth')->group(function () {

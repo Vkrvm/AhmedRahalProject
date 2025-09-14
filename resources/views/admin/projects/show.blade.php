@@ -31,9 +31,9 @@
                     </div>
 
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-300 mb-4">Gallery Images ({{ $project->images->count() }} images)</h3>
+                        <h3 class="text-lg font-semibold text-gray-300 mb-4">Gallery Images ({{ $images->total() }} images total)</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            @foreach($project->images as $image)
+                            @foreach($images as $image)
                                 <div class="bg-gray-700 rounded-lg overflow-hidden">
                                     <img src="{{ asset('storage/' . $image->image_path) }}"
                                          alt="Gallery image {{ $image->sort_order }}"
@@ -45,6 +45,12 @@
                                 </div>
                             @endforeach
                         </div>
+                        
+                        @if($images->hasPages())
+                            <div class="mt-6">
+                                @include('custom-pagination', ['paginator' => $images])
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

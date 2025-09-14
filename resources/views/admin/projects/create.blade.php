@@ -60,7 +60,7 @@
                                    multiple
                                    class="w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                    required>
-                            <p class="mt-1 text-sm text-gray-400">Select multiple images for the project gallery (will display in a responsive grid)</p>
+                            <p class="mt-1 text-sm text-gray-400">Select multiple images for the project gallery (max 10MB per image, unlimited images)</p>
                             @error('gallery_images')
                                 <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
                             @enderror

@@ -15,8 +15,9 @@ class ProjectController extends Controller
 
 	public function show(string $slug): View
 	{
-		$project = Project::where('slug', $slug)->with('images')->firstOrFail();
-		return view('public.project-show', compact('project'));
+		$project = Project::where('slug', $slug)->firstOrFail();
+		$images = $project->images()->paginate(9);
+		return view('public.project-show', compact('project', 'images'));
 	}
 }
 

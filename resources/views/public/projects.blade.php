@@ -18,9 +18,11 @@
 					</a>
 				@endforeach
 			</div>
-			<div class="mt-4">
-				{{ $projects->links() }}
-			</div>
+			@if($projects->hasPages())
+				<div class="mt-4">
+					@include('custom-pagination', ['paginator' => $projects])
+				</div>
+			@endif
 		</div>
 	</section>
 @endsection
