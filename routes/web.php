@@ -5,6 +5,7 @@ use App\Http\Controllers\PublicPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SliderImageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\Admin\SubscriberController;
 
 Route::get('/', [PublicPageController::class, 'home'])->name('home');
 
@@ -24,6 +25,13 @@ Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projec
 Route::get('/contact', [PublicPageController::class, 'contact'])->name('contact');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::post('/careers', [\App\Http\Controllers\CareerController::class, 'store'])->name('career.store');
+Route::post('/subscribe', function (\Illuminate\Http\Request $request) {
+    $validated = $request->validate([
+        'email' => 'required|email|max:255|unique:subscribers,email',
+    ]);
+    \App\Models\Subscriber::create(['email' => $validated['email']]);
+    return back()->with('success', 'Subscribed successfully.');
+})->name('subscribe');
 
 // Footer-only pages
 Route::get('/about-us', [PublicPageController::class, 'aboutUs'])->name('about.us');
@@ -52,6 +60,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Admin - Client Stories (auth protected)
     Route::resource('client-stories', \App\Http\Controllers\Admin\ClientStoryController::class);
     Route::post('client-stories/{client_story}/toggle', [\App\Http\Controllers\Admin\ClientStoryController::class, 'toggleActive'])->name('client-stories.toggle-active');
+
+    // Admin - Subscribers
+    Route::resource('subscribers', SubscriberController::class)->only(['index','destroy']);
 
     // Admin - Home Videos (auth protected)
     Route::resource('home-videos', \App\Http\Controllers\Admin\HomeVideoController::class);

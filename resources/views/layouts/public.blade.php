@@ -73,9 +73,16 @@
                     <div class="col-12 col-lg-3">
                         <h2>Newsletter</h2>
                         <p>Stay updated with our latest designs</p>
-                        <form action="">
-                            <input type="email" placeholder="example@example.com" class="w-100"></input>
-                            <button class="btn-subscribe w-100">Subscribe</button>
+                        @if(session('success'))
+                            <div class="alert alert-success my-2">{{ session('success') }}</div>
+                        @endif
+                        @if($errors->has('email'))
+                            <div class="alert alert-danger my-2">{{ $errors->first('email') }}</div>
+                        @endif
+                        <form action="{{ route('subscribe') }}" method="POST">
+                            @csrf
+                            <input type="email" name="email" placeholder="example@example.com" class="w-100" required></input>
+                            <button class="btn-subscribe w-100" type="submit">Subscribe</button>
                         </form>
                     </div>
                 </div>
