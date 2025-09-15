@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use App\Models\SliderImage;
+use App\Models\ClientStory;
 
 class PublicPageController extends Controller
 {
@@ -22,6 +23,9 @@ class PublicPageController extends Controller
 	public function contactUs(): View { return view('public.contact-us'); }
 	public function careers(): View { return view('public.careers'); }
 	public function designProcess(): View { return view('public.design-process'); }
-	public function clientStories(): View { return view('public.client-stories'); }
+	public function clientStories(): View { 
+		$clientStories = ClientStory::active()->ordered()->paginate(9);
+		return view('public.client-stories', compact('clientStories')); 
+	}
 	public function branches(): View { return view('public.branches'); }
 }
