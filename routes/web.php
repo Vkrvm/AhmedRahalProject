@@ -13,6 +13,11 @@ Route::get('/test', function () {
     return 'Test route working!';
 });
 
+// Test update route
+Route::post('/test-update', function () {
+    return 'Update test route working!';
+});
+
 Route::get('/about', [PublicPageController::class, 'about'])->name('about');
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projects.show');
@@ -39,7 +44,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Admin - Projects (auth protected)
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
+    Route::post('projects/{project}/update', [\App\Http\Controllers\Admin\ProjectController::class, 'update'])->name('projects.update.post');
     Route::delete('projects/image/{image}', [\App\Http\Controllers\Admin\ProjectController::class, 'deleteImage'])->name('projects.image.delete');
+
+    // Admin - Client Stories (auth protected)
+    Route::resource('client-stories', \App\Http\Controllers\Admin\ClientStoryController::class);
+    Route::post('client-stories/{client_story}/toggle', [\App\Http\Controllers\Admin\ClientStoryController::class, 'toggleActive'])->name('client-stories.toggle-active');
 });
 
 Route::middleware('auth')->group(function () {
