@@ -6,7 +6,11 @@
     --ink-2: #1a1a1b;
     --muted: #9aa0a6;
 }
-
+.font-sans.antialiased {
+    nav , header.bg-white {
+        background-color: #1f2937 !important;
+    }
+}
 body.admin {
     background: #111827;
     color: #e9eaee;
@@ -16,6 +20,8 @@ body.admin {
         background-color: #111827;
     }
 }
+
+
 .admin nav,
 body.admin nav {
     background: #0f0f10 !important;
