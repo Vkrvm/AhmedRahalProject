@@ -15,7 +15,7 @@
 			<div id="grid" class="grid-premium">
 				@foreach ($items as $item)
 					<div class="card-premium" data-id="{{ $item->id }}">
-						<img src="{{ asset($item->image_path) }}" alt="{{ $item->title }}" style="height:220px;object-fit:cover;width:100%">
+						<img src="{{ Storage::url($item->image_path) }}" alt="{{ $item->title }}" style="height:220px;object-fit:cover;width:100%">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-center mb-2">
 								<strong class="m-0">{{ $item->title ?? 'Untitled' }}</strong>

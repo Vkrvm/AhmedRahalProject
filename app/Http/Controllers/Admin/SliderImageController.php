@@ -32,9 +32,7 @@ class SliderImageController extends Controller
 		]);
 
 		$uploaded = $request->file('image');
-		$filename = Str::random(12).'_'.time().'.'.$uploaded->getClientOriginalExtension();
-		$uploaded->move(public_path('images'), $filename);
-		$path = 'images/'.$filename;
+		$path = $uploaded->store('images/slider', 'public');
 
 		SliderImage::create([
 			'title' => $data['title'] ?? null,
@@ -62,9 +60,7 @@ class SliderImageController extends Controller
 
 		if ($request->hasFile('image')) {
 			$uploaded = $request->file('image');
-			$filename = Str::random(12).'_'.time().'.'.$uploaded->getClientOriginalExtension();
-			$uploaded->move(public_path('images'), $filename);
-			$slider_image->image_path = 'images/'.$filename;
+			$slider_image->image_path = $uploaded->store('images/slider', 'public');
 		}
 
 		$slider_image->title = $data['title'] ?? $slider_image->title;

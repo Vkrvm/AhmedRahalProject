@@ -5,7 +5,7 @@
 		<div class="hero">
 			<video class="hero-video" autoplay muted loop playsinline>
 				@if($homeVideo)
-					<source src="{{ asset('storage/' . $homeVideo->video_path) }}" type="video/mp4">
+					<source src="{{ Storage::url($homeVideo->video_path) }}" type="video/mp4">
 				@endif
 				<source src="{{ asset('videos/home-video.mp4') }}" type="video/mp4">
 			</video>
@@ -21,7 +21,7 @@
 				<div class="swiper-wrapper">
 					@foreach ($sliderImages as $img)
 						<div class="swiper-slide">
-							<img src="{{ asset($img->image_path) }}" alt="{{ $img->title }}" class="img-fluid w-100" />
+							<img src="{{ Storage::url($img->image_path) }}" alt="{{ $img->title }}" class="img-fluid w-100" />
 						</div>
 					@endforeach
 				</div>
