@@ -3,17 +3,41 @@
 @section('content')
 	<section class="page page-contact">
 		<h1>Contact Us</h1>
-		<p>We’d love to hear about your next project!</p>
-		<form>
-			<input type="text" placeholder="Name">
-			<input type="email" placeholder="Email">
-			<input type="text" placeholder="Phone">
-            <select class="my-select" name="branch" id="branch">
-                <option data-display="Select Branch"></option>
-                <option value="Cairo">Cairo</option>
-                <option value="Dubai">Dubai</option>
+		<p>We'd love to hear about your next project!</p>
+		
+		@if(session('success'))
+			<div class="alert alert-success mb-4">
+				{{ session('success') }}
+			</div>
+		@endif
+
+		@if(session('error'))
+			<div class="alert alert-danger mb-4">
+				{{ session('error') }}
+			</div>
+		@endif
+
+		@if($errors->any())
+			<div class="alert alert-danger mb-4">
+				<ul class="mb-0">
+					@foreach($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
+
+		<form action="{{ route('contact.store') }}" method="POST">
+			@csrf
+			<input type="text" name="name" placeholder="Name" value="{{ old('name') }}" required>
+			<input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+			<input type="text" name="phone" placeholder="Phone" value="{{ old('phone') }}" required>
+            <select class="my-select" name="branch" id="branch" required>
+                <option data-display="Select Branch" value=""></option>
+                <option value="Cairo" {{ old('branch') == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+                <option value="Dubai" {{ old('branch') == 'Dubai' ? 'selected' : '' }}>Dubai</option>
             </select>
-			<textarea placeholder="Message"></textarea>
+			<textarea name="message" placeholder="Message" required>{{ old('message') }}</textarea>
 			<button type="submit">Send</button>
 		</form>
 	</section>

@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('admin.client-stories.index')" :active="request()->routeIs('admin.client-stories.*')">
                         {{ __('Client Stories') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.home-videos.index')" :active="request()->routeIs('admin.home-videos.*')">
+                        {{ __('Home Videos') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -87,6 +90,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.client-stories.index')" :active="request()->routeIs('admin.client-stories.*')">
                 {{ __('Client Stories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.home-videos.index')" :active="request()->routeIs('admin.home-videos.*')">
+                {{ __('Home Videos') }}
             </x-responsive-nav-link>
         </div>
 

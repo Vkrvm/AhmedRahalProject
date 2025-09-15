@@ -22,6 +22,8 @@ Route::get('/about', [PublicPageController::class, 'about'])->name('about');
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projects.show');
 Route::get('/contact', [PublicPageController::class, 'contact'])->name('contact');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+Route::post('/careers', [\App\Http\Controllers\CareerController::class, 'store'])->name('career.store');
 
 // Footer-only pages
 Route::get('/about-us', [PublicPageController::class, 'aboutUs'])->name('about.us');
@@ -50,6 +52,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Admin - Client Stories (auth protected)
     Route::resource('client-stories', \App\Http\Controllers\Admin\ClientStoryController::class);
     Route::post('client-stories/{client_story}/toggle', [\App\Http\Controllers\Admin\ClientStoryController::class, 'toggleActive'])->name('client-stories.toggle-active');
+
+    // Admin - Home Videos (auth protected)
+    Route::resource('home-videos', \App\Http\Controllers\Admin\HomeVideoController::class);
+    Route::post('home-videos/{home_video}/toggle', [\App\Http\Controllers\Admin\HomeVideoController::class, 'toggleActive'])->name('home-videos.toggle-active');
 });
 
 Route::middleware('auth')->group(function () {

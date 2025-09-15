@@ -4,7 +4,10 @@
 	<section class="page page-home">
 		<div class="hero">
 			<video class="hero-video" autoplay muted loop playsinline>
-				<source src="{{ Vite::asset('resources/videos/home-video.mp4') }}" type="video/mp4">
+				@if($homeVideo)
+					<source src="{{ asset('storage/' . $homeVideo->video_path) }}" type="video/mp4">
+				@endif
+				<source src="{{ asset('videos/home-video.mp4') }}" type="video/mp4">
 			</video>
 			<div class="hero-overlay">
 				<h1>Designing Your Space, Defining Your Style</h1>

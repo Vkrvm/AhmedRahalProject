@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\View;
 use App\Models\SliderImage;
 use App\Models\ClientStory;
+use App\Models\HomeVideo;
 
 class PublicPageController extends Controller
 {
@@ -13,7 +14,10 @@ class PublicPageController extends Controller
 			->where('is_active', true)
 			->orderBy('sort_order')
 			->get();
-		return view('public.home', compact('sliderImages'));
+		
+		$homeVideo = HomeVideo::active()->ordered()->first();
+		
+		return view('public.home', compact('sliderImages', 'homeVideo'));
 	}
 	public function about(): View { return view('public.about'); }
 	public function projects(): View { return view('public.projects'); }
