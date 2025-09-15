@@ -17,13 +17,13 @@
                         </div>
                     @endif
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                         @foreach($projects as $project)
                             <div class="bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                                 <img src="{{ asset('storage/' . $project->thumbnail_path) }}"
                                      alt="{{ $project->title }}"
                                      class="w-full h-48 object-cover"
-                                     onerror="this.src='https://via.placeholder.com/400x300/333333/ffffff?text=No+Thumbnail'">
+                                     onerror="this.src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?ga=GA1.1.102849408.1757898813&semt=ais_incoming&w=740&q=80'">
                                 <div class="p-4">
                                     <h3 class="text-lg font-semibold text-white mb-2">{{ $project->title }}</h3>
                                     <p class="text-gray-300 text-sm mb-4">{{ \Illuminate\Support\Str::limit($project->description, 100) }}</p>

@@ -76,15 +76,29 @@ class ProjectController extends Controller
 	public function update(Request $request, Project $project): RedirectResponse
 	{
 		// Debug: Log the request
-		\Log::info('Update request received', ['project_id' => $project->id, 'request_data' => $request->all()]);
-		
-		$validated = $request->validate([
-			'title' => 'required|string|max:255',
-			'description' => 'nullable|string',
-			'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
-			'gallery_images' => 'nullable|array',
-			'gallery_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+		\Log::info('Update request received', [
+			'project_id' => $project->id, 
+			'request_data' => $request->all(),
+			'title_value' => $request->input('title'),
+			'title_empty' => empty($request->input('title')),
+			'request_method' => $request->method(),
+			'content_type' => $request->header('Content-Type')
 		]);
+		
+		try {
+			$validated = $request->validate([
+				'title' => 'required|string|max:255',
+				'description' => 'nullable|string',
+				'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+				'gallery_images' => 'nullable|array',
+				'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+			]);
+			
+			\Log::info('Validation passed', ['validated_data' => $validated]);
+		} catch (\Illuminate\Validation\ValidationException $e) {
+			\Log::error('Validation failed', ['errors' => $e->errors(), 'input_data' => $request->all()]);
+			return redirect()->back()->withErrors($e->errors())->withInput();
+		}
 
 		$slug = Str::slug($validated['title']);
 		if ($slug !== $project->slug) {
@@ -104,25 +118,30 @@ class ProjectController extends Controller
 			$updateData['thumbnail_path'] = $request->file('thumbnail')->store('images/projects', 'public');
 		}
 
-		$project->update($updateData);
+		try {
+			$project->update($updateData);
 
-		if ($request->hasFile('gallery_images')) {
-			// Get the current highest sort order
-			$currentMaxOrder = $project->images()->max('sort_order') ?? 0;
-			
-			// Add new images with proper sort order
-			foreach ($request->file('gallery_images') as $index => $image) {
-				$imagePath = $image->store('images/projects/gallery', 'public');
-				ProjectImage::create([
-					'project_id' => $project->id,
-					'image_path' => $imagePath,
-					'sort_order' => $currentMaxOrder + $index + 1,
-				]);
+			if ($request->hasFile('gallery_images')) {
+				// Get the current highest sort order
+				$currentMaxOrder = $project->images()->max('sort_order') ?? 0;
+				
+				// Add new images with proper sort order
+				foreach ($request->file('gallery_images') as $index => $image) {
+					$imagePath = $image->store('images/projects/gallery', 'public');
+					ProjectImage::create([
+						'project_id' => $project->id,
+						'image_path' => $imagePath,
+						'sort_order' => $currentMaxOrder + $index + 1,
+					]);
+				}
 			}
-		}
 
-		\Log::info('Project updated successfully', ['project_id' => $project->id]);
-		return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
+			\Log::info('Project updated successfully', ['project_id' => $project->id]);
+			return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
+		} catch (\Exception $e) {
+			\Log::error('Project update failed', ['project_id' => $project->id, 'error' => $e->getMessage()]);
+			return redirect()->back()->with('error', 'Failed to update project: ' . $e->getMessage())->withInput();
+		}
 	}
 
 	public function deleteImage(ProjectImage $image): RedirectResponse

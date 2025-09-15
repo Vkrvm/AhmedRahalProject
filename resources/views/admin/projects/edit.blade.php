@@ -11,14 +11,33 @@
                         </a>
                     </div>
 
-                    <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data" class="space-y-6" id="updateForm">
+
+                    <form action="{{ route('admin.projects.update.post', $project) }}" method="POST" enctype="multipart/form-data" class="space-y-6" id="updateForm">
                         @csrf
-                        @method('PUT')
                         
-                        <!-- Debug info -->
-                        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
-                            <strong>Debug:</strong> Form action: {{ route('admin.projects.update', $project) }} | Method: PUT
-                        </div>
+
+                        @if(session('success'))
+                            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        @if($errors->any())
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                                <ul class="list-disc list-inside">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        
 
                         <div>
                             <label for="title" class="block text-sm font-medium text-gray-300 mb-2">Project Title</label>
@@ -27,6 +46,7 @@
                                    id="title"
                                    value="{{ old('title', $project->title) }}"
                                    class="w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <p class="text-sm text-gray-400 mt-1">Current value: "{{ old('title', $project->title) }}"</p>
                             @error('title')
                                 <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
                             @enderror
@@ -111,9 +131,14 @@
                                class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">
                                 Cancel
                             </a>
+                            <!-- <button type="button"
+                                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+                                    onclick="testForm()">
+                                Test Form
+                            </button> -->
                             <button type="button"
                                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
-                                    onclick="console.log('Submit button clicked!'); console.log('Title value:', document.getElementById('title').value); console.log('Form method:', document.querySelector('input[name=\'_method\']').value); console.log('Form action:', document.getElementById('updateForm').action); document.getElementById('updateForm').submit();">
+                                    onclick="testForm();">
                                 Update Project
                             </button>
                         </div>
@@ -125,17 +150,71 @@
 
     <script>
         function testForm() {
-            console.log('Test button clicked!');
-            console.log('Form element:', document.getElementById('updateForm'));
-            
-            // Try to submit the form programmatically
+            console.log('=== TEST FORM FUNCTION ===');
             const form = document.getElementById('updateForm');
             if (form) {
-                console.log('Form found, attempting submission...');
+                console.log('Form found:', form);
+                console.log('Form action:', form.action);
+                console.log('Form method:', form.method);
+                console.log('Title value:', document.getElementById('title').value);
+                console.log('Description value:', document.getElementById('description').value);
+                
+                // Remove ALL _method fields before submitting
+                const allMethodFields = form.querySelectorAll('input[name="_method"]');
+                console.log('Found _method fields:', allMethodFields.length);
+                allMethodFields.forEach(field => {
+                    console.log('Removing _method field with value:', field.value);
+                    field.remove();
+                });
+                
+                // Also check for any hidden fields that might be interfering
+                const allHiddenFields = form.querySelectorAll('input[type="hidden"]');
+                console.log('All hidden fields:');
+                allHiddenFields.forEach(field => {
+                    console.log(field.name, ':', field.value);
+                });
+                
+                // Try to submit the form programmatically
+                console.log('Attempting to submit form...');
                 form.submit();
             } else {
                 console.error('Form not found!');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('updateForm');
+            if (form) {
+                console.log('Form loaded successfully');
+                
+                form.addEventListener('submit', function(e) {
+                    console.log('Form submit event triggered');
+                    
+                    // Remove ALL _method fields that might interfere
+                    const methodFields = form.querySelectorAll('input[name="_method"]');
+                    console.log('Found _method fields:', methodFields.length);
+                    methodFields.forEach(field => {
+                        console.log('Removing _method field with value:', field.value);
+                        field.remove();
+                    });
+                    
+                    // Force the form method to be POST
+                    form.method = 'POST';
+                    console.log('Form method set to:', form.method);
+                    
+                    // Also check for any other hidden fields that might be causing issues
+                    const allHiddenFields = form.querySelectorAll('input[type="hidden"]');
+                    console.log('All hidden fields after cleanup:');
+                    allHiddenFields.forEach(field => {
+                        console.log(field.name, ':', field.value);
+                    });
+                    
+                    console.log('Form submitting...');
+                });
+            } else {
+                console.error('Form not found!');
+            }
+        });
     </script>
+
 </x-app-layout>
