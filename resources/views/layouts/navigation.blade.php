@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('admin.home-videos.index')" :active="request()->routeIs('admin.home-videos.*')">
                         {{ __('Home Videos') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.design-comparisons.index')" :active="request()->routeIs('admin.design-comparisons.*')">
+                        {{ __('Design Comparisons') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('admin.subscribers.index')" :active="request()->routeIs('admin.subscribers.*')">
                         {{ __('Subscribers') }}
                     </x-nav-link>
@@ -96,6 +99,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.home-videos.index')" :active="request()->routeIs('admin.home-videos.*')">
                 {{ __('Home Videos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.design-comparisons.index')" :active="request()->routeIs('admin.design-comparisons.*')">
+                {{ __('Design Comparisons') }}
             </x-responsive-nav-link>
         </div>
 
