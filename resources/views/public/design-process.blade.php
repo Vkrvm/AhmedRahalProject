@@ -2,24 +2,34 @@
 
 @section('content')
     <section class="page page-design-process">
-        <h1>Design Process</h1>
-        <p>Design Process page content.</p>
+        <h1>Before & After Transformation</h1>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-4 comparison-row">
-                    <div class="comparison-container">
-                        <div class="comparison-wrapper">
-                            <img src="{{ asset('images/11.jpg') }}" alt="After" class="comparison-image" id="afterImage">
-                            <img src="{{ asset('images/12.jpg') }}" alt="Before" class="comparison-image"
-                                id="beforeImage">
-                        </div>
-                        <div class="button-group">
-                            <button class="toggle-btn active" id="beforeBtn">Before</button>
-                            <button class="toggle-btn" id="afterBtn">After</button>
+                @forelse($comparisons as $comparison)
+                    <div class="col-12 col-lg-4 comparison-row mb-4">
+                        <div class="comparison-container">
+                            <div class="comparison-wrapper">
+                                <img src="{{ Storage::url($comparison->after_path) }}" alt="After" class="comparison-image" id="afterImage-{{ $comparison->id }}">
+                                <img src="{{ Storage::url($comparison->before_path) }}" alt="Before" class="comparison-image" id="beforeImage-{{ $comparison->id }}">
+                            </div>
+                            <div class="button-group">
+                                <button class="toggle-btn active" id="beforeBtn-{{ $comparison->id }}">Before</button>
+                                <button class="toggle-btn" id="afterBtn-{{ $comparison->id }}">After</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                    <div class="col-12">
+                        <p>No comparisons available.</p>
+                    </div>
+                @endforelse
             </div>
+
+            @if($comparisons->hasPages())
+                <div class="mt-4">
+                    @include('custom-pagination', ['paginator' => $comparisons])
+                </div>
+            @endif
         </div>
     </section>
 @endsection
@@ -58,8 +68,11 @@
             showBefore();
         }
 
-        // Setup comparisons (second set only binds if elements exist)
-        setupComparison('beforeBtn', 'afterBtn', 'beforeImage', 'afterImage');
-        setupComparison('beforeBtn2', 'afterBtn2', 'beforeImage2', 'afterImage2');
+        // Setup comparisons for all items on the page
+        const items = document.querySelectorAll('.comparison-row');
+        items.forEach((el) => {
+            const idSuffix = el.querySelector('.comparison-wrapper img').id.split('-')[1];
+            setupComparison(`beforeBtn-${idSuffix}`, `afterBtn-${idSuffix}`, `beforeImage-${idSuffix}`, `afterImage-${idSuffix}`);
+        });
     });
 </script>

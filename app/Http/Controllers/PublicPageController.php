@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\View;
 use App\Models\SliderImage;
 use App\Models\ClientStory;
 use App\Models\HomeVideo;
+use App\Models\DesignComparison;
 
 class PublicPageController extends Controller
 {
@@ -26,7 +27,10 @@ class PublicPageController extends Controller
 	public function ourProjects(): View { return view('public.our-projects'); }
 	public function contactUs(): View { return view('public.contact-us'); }
 	public function careers(): View { return view('public.careers'); }
-	public function designProcess(): View { return view('public.design-process'); }
+	public function designProcess(): View { 
+		$comparisons = DesignComparison::active()->ordered()->paginate(9);
+		return view('public.design-process', compact('comparisons'));
+	}
 	public function clientStories(): View { 
 		$clientStories = ClientStory::active()->ordered()->paginate(9);
 		return view('public.client-stories', compact('clientStories')); 
