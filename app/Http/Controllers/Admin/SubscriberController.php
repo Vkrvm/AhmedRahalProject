@@ -15,8 +15,42 @@ class SubscriberController extends Controller
      */
     public function index(): View
     {
-        $subscribers = Subscriber::latest()->paginate(20);
+        $subscribers = Subscriber::latest()->paginate(10);
         return view('admin.subscribers.index', compact('subscribers'));
+    }
+
+    /**
+     * Export all subscribers as CSV
+     */
+    public function export(): \Symfony\Component\HttpFoundation\StreamedResponse
+    {
+        $fileName = 'subscribers_'.now()->format('Y_m_d_His').'.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="'.$fileName.'"',
+        ];
+
+        $callback = function () {
+            $handle = fopen('php://output', 'w');
+            // Header row
+            fputcsv($handle, ['ID', 'Email', 'Subscribed At']);
+
+            Subscriber::orderBy('id')
+                ->chunk(1000, function ($chunk) use ($handle) {
+                    foreach ($chunk as $subscriber) {
+                        fputcsv($handle, [
+                            $subscriber->id,
+                            $subscriber->email,
+                            optional($subscriber->created_at)->format('Y-m-d H:i:s'),
+                        ]);
+                    }
+                });
+
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 
     /**

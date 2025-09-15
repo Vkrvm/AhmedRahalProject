@@ -63,6 +63,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Admin - Subscribers
     Route::resource('subscribers', SubscriberController::class)->only(['index','destroy']);
+    Route::get('subscribers-export', [SubscriberController::class, 'export'])->name('subscribers.export');
 
     // Admin - Home Videos (auth protected)
     Route::resource('home-videos', \App\Http\Controllers\Admin\HomeVideoController::class);

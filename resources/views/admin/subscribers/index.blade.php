@@ -1,3 +1,8 @@
+<style>
+    main .mt-6 .pagination-nav {
+    background-color: #131315 !important;
+}
+</style>
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -5,6 +10,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-2xl font-bold">Subscribers</h2>
+                        <a href="{{ route('admin.subscribers.export') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Export CSV</a>
                     </div>
 
                     @if(session('success'))
