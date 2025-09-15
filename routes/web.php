@@ -68,6 +68,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Admin - Home Videos (auth protected)
     Route::resource('home-videos', \App\Http\Controllers\Admin\HomeVideoController::class);
     Route::post('home-videos/{home_video}/toggle', [\App\Http\Controllers\Admin\HomeVideoController::class, 'toggleActive'])->name('home-videos.toggle-active');
+
+    // Admin - Design Comparisons (auth protected)
+    Route::resource('design-comparisons', \App\Http\Controllers\Admin\DesignComparisonController::class);
+    Route::post('design-comparisons/{design_comparison}/toggle', [\App\Http\Controllers\Admin\DesignComparisonController::class, 'toggleActive'])->name('design-comparisons.toggle-active');
 });
 
 Route::middleware('auth')->group(function () {
