@@ -27,10 +27,10 @@ Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'
 Route::post('/careers', [\App\Http\Controllers\CareerController::class, 'store'])->name('career.store');
 Route::post('/subscribe', function (\Illuminate\Http\Request $request) {
     $validated = $request->validate([
-        'email' => 'required|email|max:255|unique:subscribers,email',
+        'newsletter_email' => 'required|email|max:255|unique:subscribers,email',
     ]);
-    \App\Models\Subscriber::create(['email' => $validated['email']]);
-    return back()->with('success', 'Subscribed successfully.');
+    \App\Models\Subscriber::create(['email' => $validated['newsletter_email']]);
+    return back()->with('subscribe_success', 'Subscribed successfully.');
 })->name('subscribe');
 
 // Footer-only pages

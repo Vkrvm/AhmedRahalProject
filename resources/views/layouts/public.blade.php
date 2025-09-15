@@ -73,15 +73,15 @@
                     <div class="col-12 col-lg-3">
                         <h2>Newsletter</h2>
                         <p>Stay updated with our latest designs</p>
-                        @if(session('success'))
-                            <div class="alert alert-success my-2">{{ session('success') }}</div>
+                        @if(session('subscribe_success'))
+                            <div class="alert alert-success my-2">{{ session('subscribe_success') }}</div>
                         @endif
-                        @if($errors->has('email'))
-                            <div class="alert alert-danger my-2">{{ $errors->first('email') }}</div>
+                        @if($errors->has('newsletter_email'))
+                            <div class="alert alert-danger my-2">{{ $errors->first('newsletter_email') }}</div>
                         @endif
                         <form action="{{ route('subscribe') }}" method="POST">
                             @csrf
-                            <input type="email" name="email" placeholder="example@example.com" class="w-100" required></input>
+                            <input type="email" name="newsletter_email" placeholder="example@example.com" class="w-100" required></input>
                             <button class="btn-subscribe w-100" type="submit">Subscribe</button>
                         </form>
                     </div>
