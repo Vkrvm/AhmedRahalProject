@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@section('title', 'Rahal Designs | Interior Design Studio')
+@section('description', 'Explore timeless, functional, and stylish interiors by Rahal Designs.')
+
 @section('content')
 	<section class="page page-home">
 		<div class="hero">

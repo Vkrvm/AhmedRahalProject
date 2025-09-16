@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@section('title', 'Client Stories | Rahal Designs')
+@section('description', 'Discover what our clients have to say about their interior design projects. Read testimonials and see the results of our design work.')
+
 @section('content')
 	<section class="page page-client-stories">
         <div class="container">

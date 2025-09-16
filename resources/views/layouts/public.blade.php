@@ -3,11 +3,44 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>{{ config('app.name', 'Rahal Designs') }}</title>
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		
+		<!-- Page Title -->
+		<title>@yield('title', 'Rahal Designs | Interior Design Studio')</title>
+		
+		<!-- Meta Description -->
+		<meta name="description" content="@yield('description', 'Explore timeless, functional, and stylish interiors by Rahal Designs.')">
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="{{ url()->current() }}">
+		<meta property="og:title" content="@yield('title', 'Rahal Designs | Interior Design Studio')">
+		<meta property="og:description" content="@yield('description', 'Explore timeless, functional, and stylish interiors by Rahal Designs.')">
+		<meta property="og:image" content="@yield('og_image', asset('images/favicon_io/android-chrome-512x512.png'))">
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:url" content="{{ url()->current() }}">
+		<meta property="twitter:title" content="@yield('title', 'Rahal Designs | Interior Design Studio')">
+		<meta property="twitter:description" content="@yield('description', 'Explore timeless, functional, and stylish interiors by Rahal Designs.')">
+		<meta property="twitter:image" content="@yield('og_image', asset('images/favicon_io/android-chrome-512x512.png'))">
+		
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon_io/apple-touch-icon.png') }}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon_io/favicon-32x32.png') }}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon_io/favicon-16x16.png') }}">
+		<link rel="manifest" href="{{ asset('images/favicon_io/site.webmanifest') }}">
+		<link rel="shortcut icon" href="{{ asset('images/favicon_io/favicon.ico') }}">
+		
+		<!-- Preconnect -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+        
+        <!-- Styles -->
 		@vite(['resources/scss/public.scss','resources/js/app.js'])
 	</head>
 	<body>

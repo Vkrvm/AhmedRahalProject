@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@section('title', 'Before & After Transformations | Rahal Designs')
+@section('description', 'See the amazing before and after transformations of our interior design projects. Discover how we transform spaces into beautiful, functional environments.')
+
 @section('content')
     <section class="page page-design-process">
         <h1>Before & After Transformation</h1>

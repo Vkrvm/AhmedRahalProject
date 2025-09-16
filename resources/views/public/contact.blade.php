@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@section('title', 'Contact Us | Rahal Designs')
+@section('description', 'Get in touch with Rahal Designs for your interior design project. We\'d love to hear about your next project and help transform your space.')
+
 @section('content')
 	<section class="page page-contact">
 		<h1>Contact Us</h1>

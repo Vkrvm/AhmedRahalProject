@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@section('title', 'Our Projects | Rahal Designs')
+@section('description', 'Explore a curated selection of our finest interior design projects. Discover elegant, functional, and timeless spaces designed by Rahal Designs.')
+
 @section('content')
 	<section class="page page-projects">
 		<div class="container py-5">

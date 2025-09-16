@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@section('title', 'Careers | Join Rahal Designs')
+@section('description', 'Join Rahal Designs and be part of a creative team that designs more than interiors. We craft environments that inspire. Apply for interior design, visualization, and other roles.')
+
 @section('content')
 	<section class="page page-careers">
 		<h1 class="mt-4 text-center">Join Rahal Designs</h1>

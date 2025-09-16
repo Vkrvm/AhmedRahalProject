@@ -1,5 +1,8 @@
 @extends('layouts.public')
 
+@section('title', 'About Us | Rahal Designs')
+@section('description', 'Learn about Rahal Designs, a creative interior design office that transforms spaces into stunning environments. Meet Ahmed Rahal, Founder & Lead Designer.')
+
 @section('content')
 	<section class="page page-about">
         <div class="container mt-4">
