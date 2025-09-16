@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 @forelse($comparisons as $comparison)
-                    <div class="col-12 col-lg-4 comparison-row mb-4">
+                    <div class="col-12 col-md-6 col-lg-4 comparison-row mb-4">
                         <div class="comparison-container">
                             <div class="comparison-wrapper">
                                 <img src="{{ Storage::url($comparison->after_path) }}" alt="After" class="comparison-image" id="afterImage-{{ $comparison->id }}">
