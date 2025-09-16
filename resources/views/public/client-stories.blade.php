@@ -12,7 +12,7 @@
             @if($clientStories->count() > 0)
                 <div class="row">
                     @foreach($clientStories as $clientStory)
-                        <div class="col-12 col-lg-4 mb-3">
+                        <div class="col-12 col-md-6 col-lg-4 mb-3">
                             <div class="card shadow p-3">
                                 <div class="personal-data">
                                     <img src="{{ asset('storage/' . $clientStory->photo_path) }}" 
