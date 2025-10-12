@@ -1,3 +1,14 @@
+<style>
+    .min-h-screen.bg-gray-100{
+        background-color: #111827 !important;
+    }
+	.btn-ghost {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: max-content;
+	}
+</style>
 <x-app-layout>
 	<x-slot name="header">
 		<div class="admin-header">

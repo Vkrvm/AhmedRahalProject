@@ -5,12 +5,12 @@
             @if ($paginator->onFirstPage())
                 <span class="pagination-btn pagination-btn-disabled">
                     <span class="pagination-arrow">‹</span>
-                    Previous
+                    
                 </span>
             @else
                 <a href="{{ $paginator->previousPageUrl() }}" class="pagination-btn pagination-btn-prev">
                     <span class="pagination-arrow">‹</span>
-                    Previous
+                    
                 </a>
             @endif
 
@@ -49,12 +49,12 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <a href="{{ $paginator->nextPageUrl() }}" class="pagination-btn pagination-btn-next">
-                    Next
+                    
                     <span class="pagination-arrow">›</span>
                 </a>
             @else
                 <span class="pagination-btn pagination-btn-disabled">
-                    Next
+                    
                     <span class="pagination-arrow">›</span>
                 </span>
             @endif

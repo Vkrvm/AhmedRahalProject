@@ -1,7 +1,12 @@
 <style>
     main .mt-6 .pagination-nav {
-    background-color: #131315 !important;
-}
+        background-color: #131315 !important;
+    }
+    
+    .min-h-screen.bg-gray-100{
+        background-color: #111827 !important;
+    }
+
 </style>
 <x-app-layout>
     <div class="py-12">

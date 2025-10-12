@@ -1,3 +1,8 @@
+<style>
+    .min-h-screen.bg-gray-100{
+        background-color: #111827 !important;
+    }
+</style>
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
@@ -74,7 +79,7 @@
                     </div>
                     
                     <div class="mt-8 pt-6 border-t border-gray-600">
-                        <div class="flex space-x-4">
+                        <div class="space-x-4">
                             <a href="{{ route('admin.client-stories.edit', $clientStory) }}"
                                class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">
                                 Edit Client Story

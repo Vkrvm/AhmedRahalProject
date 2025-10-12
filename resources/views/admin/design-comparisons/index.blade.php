@@ -1,3 +1,8 @@
+<style>
+    .min-h-screen.bg-gray-100{
+        background-color: #111827 !important;
+    }
+</style>
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -32,7 +37,7 @@
                                         </span>
                                         <span class="text-xs text-gray-400">Order: {{ $comparison->sort_order }}</span>
                                     </div>
-                                    <div class="flex space-x-2">
+                                    <div class="space-x-2">
                                         <a href="{{ route('admin.design-comparisons.show', $comparison) }}"
                                            class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded transition-colors">View</a>
                                         <a href="{{ route('admin.design-comparisons.edit', $comparison) }}"

@@ -96,12 +96,17 @@
                             <a href="mailto:rahaldesigns.info@gmail.com" class="nav-link">
                               <i class="fa-solid fa-envelope"></i> rahaldesigns.info@gmail.com
                             </a>
-                          </li>
-                          <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a href="tel:+201030015161" class="nav-link">
                               <i class="fa-solid fa-phone"></i> +20 103 001 5161
                             </a>
-                          </li>
+                        </li>
+						<li class="nav-item">
+                            <a href="tel:+971 052 295 3036" class="nav-link">
+                              <i class="fa-solid fa-phone"></i> +971 052 295 3036
+                            </a>
+                        </li>
                     </div>
                     <div class="col-12 col-lg-3">
                         <h2>Newsletter</h2>

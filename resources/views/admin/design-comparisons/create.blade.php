@@ -1,3 +1,8 @@
+<style>
+    .min-h-screen.bg-gray-100{
+        background-color: #111827 !important;
+    }
+</style>
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">

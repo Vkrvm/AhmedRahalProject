@@ -3,9 +3,11 @@
 .env
 .env.backup
 .env.production
-.env.example
 .phpactor.json
 .phpunit.result.cache
+docker-compose.yml
+Dockerfile
+/mysql_data
 /.fleet
 /.idea
 /.nova

@@ -17,8 +17,8 @@
         </div>
         <div class="contact-info">
             <h5>Contact Information</h3>
-            <p>Cairo: +20 103 001 5161 | rahaldesigns.info@gmail.com</p>
-            <p>Dubai: +971 052 295 3036 | rahaldesigns.info@gmail.com</p>
+            <p>Cairo: +20 103 001 5161</p>
+            <p>Dubai: +971 052 295 3036</p>
         </div>
 	</section>
 @endsection

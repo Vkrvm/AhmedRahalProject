@@ -1,3 +1,8 @@
+<style>
+    .min-h-screen.bg-gray-100{
+        background-color: #111827 !important;
+    }
+</style>
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -39,7 +44,7 @@
                                         <span class="text-xs text-gray-400">{{ $homeVideo->created_at->format('M d, Y') }}</span>
                                     </div>
                                     
-                                    <div class="flex space-x-2">
+                                    <div class="space-x-2">
                                         <a href="{{ route('admin.home-videos.show', $homeVideo) }}"
                                            class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded transition-colors">
                                             View

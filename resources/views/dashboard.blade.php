@@ -1,3 +1,11 @@
+<style>
+    .min-h-screen.bg-gray-100{
+        background-color: #111111 !important;
+    }
+    .p-6.text-gray-900{
+        color: #e9ecee;
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
