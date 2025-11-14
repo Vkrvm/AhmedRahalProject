@@ -77,14 +77,14 @@ class ProjectController extends Controller
 	{
 		// Debug: Log the request
 		\Log::info('Update request received', [
-			'project_id' => $project->id, 
+			'project_id' => $project->id,
 			'request_data' => $request->all(),
 			'title_value' => $request->input('title'),
 			'title_empty' => empty($request->input('title')),
 			'request_method' => $request->method(),
 			'content_type' => $request->header('Content-Type')
 		]);
-		
+
 		try {
 			$validated = $request->validate([
 				'title' => 'required|string|max:255',
@@ -93,7 +93,7 @@ class ProjectController extends Controller
 				'gallery_images' => 'nullable|array',
 				'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
 			]);
-			
+
 			\Log::info('Validation passed', ['validated_data' => $validated]);
 		} catch (\Illuminate\Validation\ValidationException $e) {
 			\Log::error('Validation failed', ['errors' => $e->errors(), 'input_data' => $request->all()]);
@@ -124,7 +124,7 @@ class ProjectController extends Controller
 			if ($request->hasFile('gallery_images')) {
 				// Get the current highest sort order
 				$currentMaxOrder = $project->images()->max('sort_order') ?? 0;
-				
+
 				// Add new images with proper sort order
 				foreach ($request->file('gallery_images') as $index => $image) {
 					$imagePath = $image->store('images/projects/gallery', 'public');
@@ -149,6 +149,27 @@ class ProjectController extends Controller
 		$project = $image->project;
 		$image->delete();
 		return redirect()->route('admin.projects.edit', $project)->with('success', 'Image deleted successfully.');
+	}
+
+	public function deleteMultipleImages(Request $request): RedirectResponse
+	{
+		$validated = $request->validate([
+			'image_ids' => 'required|array',
+			'image_ids.*' => 'exists:project_images,id',
+		]);
+
+		$images = ProjectImage::whereIn('id', $validated['image_ids'])->get();
+
+		if ($images->isEmpty()) {
+			return redirect()->back()->with('error', 'No images found to delete.');
+		}
+
+		$project = $images->first()->project;
+		$count = $images->count();
+
+		ProjectImage::whereIn('id', $validated['image_ids'])->delete();
+
+		return redirect()->route('admin.projects.edit', $project)->with('success', "{$count} image(s) deleted successfully.");
 	}
 
 	public function destroy(Project $project): RedirectResponse
