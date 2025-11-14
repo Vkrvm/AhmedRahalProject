@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')">
                         {{ __('Projects') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.fit-outs.index')" :active="request()->routeIs('admin.fit-outs.*')">
+                        {{ __('Fit-Outs') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('admin.client-stories.index')" :active="request()->routeIs('admin.client-stories.*')">
                         {{ __('Client Stories') }}
                     </x-nav-link>
@@ -93,6 +96,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')">
                 {{ __('Projects') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.fit-outs.index')" :active="request()->routeIs('admin.fit-outs.*')">
+                {{ __('Fit-Outs') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.client-stories.index')" :active="request()->routeIs('admin.client-stories.*')">
                 {{ __('Client Stories') }}

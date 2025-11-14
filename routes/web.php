@@ -5,6 +5,7 @@ use App\Http\Controllers\PublicPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SliderImageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\FitOutController;
 use App\Http\Controllers\Admin\SubscriberController;
 
 Route::get('/', [PublicPageController::class, 'home'])->name('home');
@@ -22,6 +23,8 @@ Route::post('/test-update', function () {
 Route::get('/about', [PublicPageController::class, 'about'])->name('about');
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/fit-outs', [FitOutController::class, 'index'])->name('fit-outs');
+Route::get('/fit-outs/{slug}', [FitOutController::class, 'show'])->name('fit-outs.show');
 Route::get('/contact', [PublicPageController::class, 'contact'])->name('contact');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::post('/careers', [\App\Http\Controllers\CareerController::class, 'store'])->name('career.store');
@@ -56,6 +59,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
     Route::post('projects/{project}/update', [\App\Http\Controllers\Admin\ProjectController::class, 'update'])->name('projects.update.post');
     Route::delete('projects/image/{image}', [\App\Http\Controllers\Admin\ProjectController::class, 'deleteImage'])->name('projects.image.delete');
+    Route::post('projects/images/delete-multiple', [\App\Http\Controllers\Admin\ProjectController::class, 'deleteMultipleImages'])->name('projects.images.delete-multiple');
+
+    // Admin - Fit-Outs (auth protected)
+    Route::resource('fit-outs', \App\Http\Controllers\Admin\FitOutController::class);
+    Route::post('fit-outs/{fit_out}/update', [\App\Http\Controllers\Admin\FitOutController::class, 'update'])->name('fit-outs.update.post');
+    Route::delete('fit-outs/image/{image}', [\App\Http\Controllers\Admin\FitOutController::class, 'deleteImage'])->name('fit-outs.image.delete');
+    Route::post('fit-outs/images/delete-multiple', [\App\Http\Controllers\Admin\FitOutController::class, 'deleteMultipleImages'])->name('fit-outs.images.delete-multiple');
 
     // Admin - Client Stories (auth protected)
     Route::resource('client-stories', \App\Http\Controllers\Admin\ClientStoryController::class);
