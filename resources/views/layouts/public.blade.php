@@ -73,9 +73,9 @@
                         <h2>Rahal Designs</h2>
                         <ul class="p-0">
                             <li class="nav-item"><a href="{{ route('about') }}">About Us</a></li>
-                            <li class="nav-item"><a href="{{ route('projects') }}">Our Projects</a></li>
                             <li class="nav-item"><a href="{{ route('contact') }}">Contact Us</a></li>
                             <li class="nav-item"><a href="{{ route('careers') }}">Careers</a></li>
+							<li class="nav-item"><a href="{{ route('branches') }}">Branches</a></li>
                         </ul>
 
 
@@ -85,9 +85,9 @@
                     <div class="col-6 col-lg-3">
                         <h2>Explore</h2>
                         <ul class="p-0">
-                            <li class="nav-item"><a href="{{ route('design.process') }}">Design Process</a></li>
-                            <li class="nav-item"><a href="{{ route('client.stories') }}">Client Stories</a></li>
-                            <li class="nav-item"><a href="{{ route('branches') }}">Branches</a></li>
+						    <li class="nav-item"><a href="{{ route('projects') }}">Our Projects</a></li>
+							<li class="nav-item"><a href="{{ route('fit-outs') }}">Fit-Outs</a></li>
+                            <li class="nav-item"><a href="{{ route('design.process') }}">Before & After</a></li>
                         </ul>
                     </div>
                     <div class="col-12 col-lg-3">

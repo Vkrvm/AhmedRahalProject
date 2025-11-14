@@ -1,3 +1,8 @@
+<style>
+    .min-h-screen.bg-gray-100{
+        background-color: #111827 !important;
+    }
+</style>
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -27,7 +32,7 @@
                                 <div class="p-4">
                                     <h3 class="text-lg font-semibold text-white mb-2">{{ $fitOut->title }}</h3>
                                     <p class="text-gray-300 text-sm mb-4">{{ \Illuminate\Support\Str::limit($fitOut->description, 100) }}</p>
-                                    <div class="flex space-x-2">
+                                    <div class="space-x-2">
                                         <a href="{{ route('admin.fit-outs.show', $fitOut) }}"
                                            class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded transition-colors">
                                             View
