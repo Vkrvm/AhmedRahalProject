@@ -63,7 +63,7 @@
 					</div>
 			</nav>
 		</header>
-		<main class="site-content p-0">
+		<main class="site-content p-0 {{ request()->routeIs('home') ? '' : 'with-header-offset' }}">
 			@yield('content')
 		</main>
 		<footer class="site-footer">

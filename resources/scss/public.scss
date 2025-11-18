@@ -47,6 +47,10 @@ body {
 
 .site-content { padding: 0 24px 24px; }
 
+.site-content.with-header-offset {
+	margin-top: 6rem;
+}
+
 .footer-links ul {
 	list-style: none;
 	display: flex;
