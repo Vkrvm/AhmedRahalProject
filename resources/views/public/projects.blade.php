@@ -1,12 +1,12 @@
 @extends('layouts.public')
 
-@section('title', 'Our Projects | Rahal Designs')
+@section('title', 'Our Designs | Rahal Designs')
 @section('description', 'Explore a curated selection of our finest interior design projects. Discover elegant, functional, and timeless spaces designed by Rahal Designs.')
 
 @section('content')
 	<section class="page page-projects">
 		<div class="container py-5">
-			<h1 class="mb-4">Our Projects</h1>
+			<h1 class="mb-4">Our Designs</h1>
 			<p class="mb-4">Explore a curated selection of our finest interior design projects</p>
 			<div class="projects-grid">
 				@foreach ($projects as $project)

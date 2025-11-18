@@ -15,7 +15,7 @@
 			<div class="hero-overlay">
 				<h1>Designing Your Space, Defining Your Style</h1>
 				<p>Elegant. Timeless. Functional.</p>
-				<a href="{{ route('projects') }}" class="btn btn-expolre">Explore Our Projects</a>
+				<a href="{{ route('projects') }}" class="btn btn-expolre">Explore Our Designs</a>
 			</div>
 		</div>
 
