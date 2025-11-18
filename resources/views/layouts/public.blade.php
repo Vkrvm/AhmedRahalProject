@@ -50,8 +50,12 @@
 						<img src="{{ asset('images/RahalDesignsLogo.png') }}" alt="Logo" width="40" class="me-1">
 						<span class="brand">{{ config('app.name', 'Rahal Designs') }}</span>
 					</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
+					<button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="toggler-box" aria-hidden="true">
+							<span class="toggler-line"></span>
+							<span class="toggler-line"></span>
+							<span class="toggler-line"></span>
+						</span>
 					</button>
 					<div class="collapse navbar-collapse" id="mainNavbar">
 						<ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-4">

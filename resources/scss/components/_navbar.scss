@@ -9,9 +9,6 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     &.is-scrolled {
         background-color: #1a1a1a !important;
-        .navbar {
-            background-color: #1a1a1a !important;
-        }
     }
 
     @media (max-width: 768px) {
@@ -34,6 +31,59 @@
 
 .site-header .navbar {
 	background-color: transparent !important;
+}
+
+.navbar-toggler.custom-toggler {
+    border: none;
+    padding: 0;
+    width: 42px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: transform 0.3s ease;
+        display: none;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    @media (max-width: 991.98px) {
+        display: flex;
+    }
+
+    .toggler-box {
+        position: relative;
+        width: 32px;
+        height: 30px;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .toggler-line {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 999px;
+        transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    &.is-open {
+        .toggler-line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .toggler-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .toggler-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    }
 }
 
 .brand {
