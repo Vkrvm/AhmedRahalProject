@@ -9,6 +9,9 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     &.is-scrolled {
         background-color: #1a1a1a !important;
+        .navbar {
+            background-color: #1a1a1a !important;
+        }
     }
 
     @media (max-width: 768px) {

@@ -37,6 +37,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	const header = document.querySelector('[data-scroll-header]');
 	if (header) {
+		const navbarCollapse = document.getElementById('mainNavbar');
+
 		const toggleHeaderState = () => {
 			const shouldBeScrolled = window.scrollY > 40;
 			header.classList.toggle('is-scrolled', shouldBeScrolled);
@@ -45,6 +47,16 @@ window.addEventListener('DOMContentLoaded', () => {
 		window.addEventListener('scroll', () => {
 			window.requestAnimationFrame(toggleHeaderState);
 		}, { passive: true });
+
+		if (navbarCollapse) {
+			navbarCollapse.addEventListener('show.bs.collapse', () => {
+				header.classList.add('is-scrolled');
+			});
+
+			navbarCollapse.addEventListener('hide.bs.collapse', () => {
+				toggleHeaderState();
+			});
+		}
 
 		toggleHeaderState();
 	}
