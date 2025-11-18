@@ -34,4 +34,18 @@ window.addEventListener('DOMContentLoaded', () => {
 			},
 		});
 	}
+
+	const header = document.querySelector('[data-scroll-header]');
+	if (header) {
+		const toggleHeaderState = () => {
+			const shouldBeScrolled = window.scrollY > 40;
+			header.classList.toggle('is-scrolled', shouldBeScrolled);
+		};
+
+		window.addEventListener('scroll', () => {
+			window.requestAnimationFrame(toggleHeaderState);
+		}, { passive: true });
+
+		toggleHeaderState();
+	}
 });
