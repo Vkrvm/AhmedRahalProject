@@ -35,8 +35,8 @@ class DesignComparisonController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'before' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
-            'after' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+            'before' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
+            'after' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
         ]);
@@ -78,8 +78,8 @@ class DesignComparisonController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'before' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
-            'after' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+            'before' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
+            'after' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
         ]);

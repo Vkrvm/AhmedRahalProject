@@ -29,9 +29,9 @@ class FitOutController extends Controller
 		$validated = $request->validate([
 			'title' => 'required|string|max:255',
 			'description' => 'nullable|string',
-			'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+			'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
 			'gallery_images' => 'required|array|min:1',
-			'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+			'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
 		]);
 
 		$slug = Str::slug($validated['title']);
@@ -78,9 +78,9 @@ class FitOutController extends Controller
 		$validated = $request->validate([
 			'title' => 'required|string|max:255',
 			'description' => 'nullable|string',
-			'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+			'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
 			'gallery_images' => 'nullable|array',
-			'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+			'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
 		]);
 
 		$slug = Str::slug($validated['title']);

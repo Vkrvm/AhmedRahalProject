@@ -29,9 +29,9 @@ class ProjectController extends Controller
 		$validated = $request->validate([
 			'title' => 'required|string|max:255',
 			'description' => 'nullable|string',
-			'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+			'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
 			'gallery_images' => 'required|array|min:1',
-			'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+			'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
 		]);
 
 		$slug = Str::slug($validated['title']);
@@ -75,30 +75,13 @@ class ProjectController extends Controller
 
 	public function update(Request $request, Project $project): RedirectResponse
 	{
-		// Debug: Log the request
-		\Log::info('Update request received', [
-			'project_id' => $project->id,
-			'request_data' => $request->all(),
-			'title_value' => $request->input('title'),
-			'title_empty' => empty($request->input('title')),
-			'request_method' => $request->method(),
-			'content_type' => $request->header('Content-Type')
+		$validated = $request->validate([
+			'title' => 'required|string|max:255',
+			'description' => 'nullable|string',
+			'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
+			'gallery_images' => 'nullable|array',
+			'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
 		]);
-
-		try {
-			$validated = $request->validate([
-				'title' => 'required|string|max:255',
-				'description' => 'nullable|string',
-				'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
-				'gallery_images' => 'nullable|array',
-				'gallery_images.*' => ['image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
-			]);
-
-			\Log::info('Validation passed', ['validated_data' => $validated]);
-		} catch (\Illuminate\Validation\ValidationException $e) {
-			\Log::error('Validation failed', ['errors' => $e->errors(), 'input_data' => $request->all()]);
-			return redirect()->back()->withErrors($e->errors())->withInput();
-		}
 
 		$slug = Str::slug($validated['title']);
 		if ($slug !== $project->slug) {
@@ -136,10 +119,8 @@ class ProjectController extends Controller
 				}
 			}
 
-			\Log::info('Project updated successfully', ['project_id' => $project->id]);
 			return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
 		} catch (\Exception $e) {
-			\Log::error('Project update failed', ['project_id' => $project->id, 'error' => $e->getMessage()]);
 			return redirect()->back()->with('error', 'Failed to update project: ' . $e->getMessage())->withInput();
 		}
 	}

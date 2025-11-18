@@ -36,7 +36,7 @@ class ClientStoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'photo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+            'photo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
             'project_link' => 'nullable|url',
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
@@ -80,7 +80,7 @@ class ClientStoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', new MaxFileSize(10240)],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', new MaxFileSize(10240)],
             'project_link' => 'nullable|url',
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
@@ -118,7 +118,7 @@ class ClientStoryController extends Controller
     public function toggleActive(ClientStory $clientStory): RedirectResponse
     {
         $clientStory->update(['is_active' => !$clientStory->is_active]);
-        
+
         $status = $clientStory->is_active ? 'activated' : 'deactivated';
         return redirect()->back()->with('success', "Client story {$status} successfully.");
     }
